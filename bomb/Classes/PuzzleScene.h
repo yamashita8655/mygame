@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+USING_NS_CC;
+
 class PuzzleScene : public cocos2d::Layer
 {
 public:
@@ -17,7 +19,18 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
-    // implement the "static create()" method manually
+	// シングルタチE��
+	bool onTouchBegan(Touch* touch, Event* event);
+    void onTouchMoved(Touch* touch, Event* event);
+    void onTouchEnded(Touch* touch, Event* event);
+    void onTouchCancelled(Touch* touch, Event* event);
+    
+	// マルチタチE��
+	virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event *pEvent);
+    virtual void onTouchesMoved(const std::vector<Touch*>& touches,Event *pEvent);
+    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *pEvent);
+    virtual void onTouchesCancelled(const std::vector<Touch*>& touches, Event *pEvent);
+	// implement the "static create()" method manually
     CREATE_FUNC(PuzzleScene);
 };
 

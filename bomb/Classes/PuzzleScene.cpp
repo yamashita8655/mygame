@@ -73,12 +73,32 @@ bool PuzzleScene::init()
     this->addChild(sprite, 0);
 	
 	// タイルエディターで作った画像の作成
-	CCTMXTiledMap *map = CCTMXTiledMap::create("mapdata/map1.tmx");
+	TMXTiledMap *map = TMXTiledMap::create("mapdata/map1.tmx");
 	this->addChild(map, 0);
 	
 	this->scheduleUpdate();
-    
-    return true;
+
+	// タッチイベント登録らしい
+    EventDispatcher* dispatcher = Director::getInstance()->getEventDispatcher();
+    EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = CC_CALLBACK_2(PuzzleScene::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(PuzzleScene::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(PuzzleScene::onTouchEnded, this);
+	listener->onTouchCancelled = CC_CALLBACK_2(PuzzleScene::onTouchCancelled, this);
+	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+
+	// マルチタッチ。忘れないように書いておくだけ
+	//EventDispatcher* dispatcher2 = Director::getInstance()->getEventDispatcher();
+    //EventListenerTouchAllAtOnce* listener2 = EventListenerTouchAllAtOnce::create();
+    //listener2->onTouchesBegan = CC_CALLBACK_2(PuzzleScene::onTouchesBegan, this);
+    //listener2->onTouchesMoved = CC_CALLBACK_2(PuzzleScene::onTouchesMoved, this);
+    //listener2->onTouchesCancelled = CC_CALLBACK_2(PuzzleScene::onTouchesCancelled, this);
+    //listener2->onTouchesEnded = CC_CALLBACK_2(PuzzleScene::onTouchesEnded, this);
+
+    //dispatcher2->addEventListenerWithSceneGraphPriority(listener2, this);
+
+	return true;
 }
 
 void PuzzleScene::update(float delta)
@@ -94,3 +114,44 @@ void PuzzleScene::menuCloseCallback(Ref* pSender)
     exit(0);
 #endif
 }
+	
+
+bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
+{
+	OutputDebugString(L"touch\n");
+	return true;
+}
+   
+void PuzzleScene::onTouchMoved(Touch* touch, Event* event)
+{
+	OutputDebugString(L"move\n");
+}
+   
+void PuzzleScene::onTouchEnded(Touch* touch, Event* event)
+{
+	OutputDebugString(L"end\n");
+}
+   
+void PuzzleScene::onTouchCancelled(Touch* touch, Event* event)
+{
+	OutputDebugString(L"cancell\n");
+}
+
+	
+void PuzzleScene::onTouchesBegan(const std::vector<Touch*>& touches, Event *pEvent)
+{
+	
+}
+void PuzzleScene::onTouchesMoved(const std::vector<Touch*>& touches,Event *pEvent)
+{
+	
+}
+void PuzzleScene::onTouchesEnded(const std::vector<Touch*>& touches, Event *pEvent)
+{
+	
+}
+void PuzzleScene::onTouchesCancelled(const std::vector<Touch*>& touches, Event *pEvent)
+{
+	
+}
+
