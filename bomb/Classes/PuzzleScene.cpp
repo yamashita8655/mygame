@@ -1,4 +1,5 @@
 #include "PuzzleScene.h"
+#include "Utility/TMXManager.h"
 
 USING_NS_CC;
 
@@ -73,8 +74,9 @@ bool PuzzleScene::init()
     this->addChild(sprite, 0);
 	
 	// タイルエディターで作った画像の作成
-	TMXTiledMap *map = TMXTiledMap::create("mapdata/map1.tmx");
-	this->addChild(map, 0);
+	mMap = TMXTiledMap::create("mapdata/map1.tmx");
+	this->addChild(mMap, 0);
+	mLayer = mMap->getLayer("layer1");
 	
 	this->scheduleUpdate();
 
@@ -118,18 +120,27 @@ void PuzzleScene::menuCloseCallback(Ref* pSender)
 
 bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 {
-	OutputDebugString(L"touch\n");
+	//EventMouse* mouse = (EventMouse*)event;
+
+	Point tileCoord = Point(touch->getLocation().x, touch->getLocation().y);
+	//uint32_t gid = mLayer->getTileGIDAt(Point(0,0));
+	uint32_t gid = TMXManager::getInstance()->GetTileId(mMap, mLayer, touch);
+
+	Size mapsize = mMap->getMapSize();// 横と縦のタイル数が返る
+	Size tilesize = mMap->getTileSize();// 1マップのタイルサイズ
+
+	//log("%f, %f\n", mouse->getCursorX(), mouse->getCursorY());
+	//log("%d:%d:%d:%d:%d\n", gid,gid2,gid3,gid4,gid5);
+	log("%d\n", gid);
 	return true;
 }
    
 void PuzzleScene::onTouchMoved(Touch* touch, Event* event)
 {
-	OutputDebugString(L"move\n");
 }
    
 void PuzzleScene::onTouchEnded(Touch* touch, Event* event)
 {
-	OutputDebugString(L"end\n");
 }
    
 void PuzzleScene::onTouchCancelled(Touch* touch, Event* event)

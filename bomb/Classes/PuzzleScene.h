@@ -8,6 +8,10 @@ USING_NS_CC;
 class PuzzleScene : public cocos2d::Layer
 {
 public:
+	// ƒ^ƒCƒ‹î•ñ
+	TMXTiledMap* mMap;
+	TMXLayer* mLayer;
+
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
 
