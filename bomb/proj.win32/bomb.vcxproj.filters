@@ -42,6 +42,9 @@
     <ClCompile Include="..\Classes\Utility\TMXObject.cpp">
       <Filter>Classes\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Object\TileData.cpp">
+      <Filter>Classes\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\TMXObject.h">
       <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Object\TileData.h">
+      <Filter>Classes\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

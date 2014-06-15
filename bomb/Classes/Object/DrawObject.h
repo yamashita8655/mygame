@@ -11,6 +11,9 @@ public:
 	DrawObject();
 	virtual ~DrawObject(){};
 	Sprite* CreateSprite(const char* filename);
+	
+	void SetSprite(Sprite* sprite){ mSprite = sprite; }
+	Sprite* GetSprite(){ return mSprite; }
 
 private:
 	Sprite* mSprite;

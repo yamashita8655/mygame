@@ -121,8 +121,12 @@ void PuzzleScene::menuCloseCallback(Ref* pSender)
 
 bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 {
-	//EventMouse* mouse = (EventMouse*)event;
-
+	Point point = mTMXObject->GetTouchPoint(touch);
+	if(mTMXObject->GetTile(point.x, point.y)->GetPutObject() != nullptr)
+	{
+		return false;
+	}
+	
 	Point tileCoord = Point(touch->getLocation().x, touch->getLocation().y);
 	//uint32_t gid = mLayer->getTileGIDAt(Point(0,0));
 	int tilex = 0;
@@ -131,10 +135,14 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 
 	log("%d\n", gid);
 
-	Sprite* bomb = ObjectManager::getInstance()->CreateSprite("bomb01.png");
+	DrawObject* bomb = ObjectManager::getInstance()->CreateDrawObject("bomb01.png");
 	Point drawpos = mTMXObject->GetTouchCenterPoint(touch);
-    bomb->setPosition(drawpos);
-    this->addChild(bomb, 0);
+    bomb->GetSprite()->setPosition(drawpos);
+    this->addChild(bomb->GetSprite(), 0);
+
+	TileData* tile = new TileData();
+	tile->SetPutObject(bomb);
+	mTMXObject->SetTile(point.x, point.y, tile);
 	
 	return true;
 }

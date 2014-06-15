@@ -13,8 +13,13 @@ void ObjectManager::CreateSpriteFrameCache(const char* filename)
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(filename);
 }
 
-Sprite* ObjectManager::CreateSprite(const char* filename)
+DrawObject* ObjectManager::CreateDrawObject(const char* filename)
 {
 	Sprite* sprite = Sprite::createWithSpriteFrameName(filename);
-	return sprite;
+	DrawObject* obj = new DrawObject();
+	std::pair<const char*, DrawObject*> p(filename, obj);
+	mDrawObjectMap.insert(p);
+	
+	obj->SetSprite(sprite);
+	return obj;
 }

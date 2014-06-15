@@ -137,6 +137,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Object\DrawObject.cpp" />
     <ClCompile Include="..\Classes\Object\ObjectManager.cpp" />
+    <ClCompile Include="..\Classes\Object\TileData.cpp" />
     <ClCompile Include="..\Classes\PuzzleScene.cpp" />
     <ClCompile Include="..\Classes\Utility\TMXManager.cpp" />
     <ClCompile Include="..\Classes\Utility\TMXObject.cpp" />
@@ -147,6 +148,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\Object\DrawObject.h" />
     <ClInclude Include="..\Classes\Object\ObjectManager.h" />
+    <ClInclude Include="..\Classes\Object\TileData.h" />
     <ClInclude Include="..\Classes\PuzzleScene.h" />
     <ClInclude Include="..\Classes\Utility\TMXManager.h" />
     <ClInclude Include="..\Classes\Utility\TMXObject.h" />
