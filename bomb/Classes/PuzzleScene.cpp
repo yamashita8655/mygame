@@ -1,5 +1,6 @@
 #include "PuzzleScene.h"
 #include "Utility/TMXManager.h"
+#include "Object/ObjectManager.h"
 
 USING_NS_CC;
 
@@ -100,6 +101,7 @@ bool PuzzleScene::init()
 
     //dispatcher2->addEventListenerWithSceneGraphPriority(listener2, this);
 
+	ObjectManager::getInstance()->CreateSpriteFrameCache("putobject/sample_texturepacker.plist");
 	return true;
 }
 
@@ -124,7 +126,9 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 
 	Point tileCoord = Point(touch->getLocation().x, touch->getLocation().y);
 	//uint32_t gid = mLayer->getTileGIDAt(Point(0,0));
-	uint32_t gid = TMXManager::getInstance()->GetTileId(mMap, mLayer, touch);
+	int tilex = 0;
+	int tiley = 0;
+	uint32_t gid = TMXManager::getInstance()->GetTileId(mMap, mLayer, touch, &tilex, &tiley);
 
 	Size mapsize = mMap->getMapSize();// 横と縦のタイル数が返る
 	Size tilesize = mMap->getTileSize();// 1マップのタイルサイズ
@@ -132,6 +136,11 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 	//log("%f, %f\n", mouse->getCursorX(), mouse->getCursorY());
 	//log("%d:%d:%d:%d:%d\n", gid,gid2,gid3,gid4,gid5);
 	log("%d\n", gid);
+
+	Sprite* bomb = ObjectManager::getInstance()->CreateSprite("bomb01.png");
+	Point drawpos = TMXManager::getInstance()->GetCenterPoint(mMap, tilex, tiley);
+    bomb->setPosition(drawpos);
+    this->addChild(bomb, 0);
 	return true;
 }
    
