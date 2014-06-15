@@ -2,6 +2,7 @@
 #define __PUZZLE_SCENE_H__
 
 #include "cocos2d.h"
+#include "Utility/TMXObject.h"
 
 USING_NS_CC;
 
@@ -9,8 +10,7 @@ class PuzzleScene : public cocos2d::Layer
 {
 public:
 	// É^ÉCÉãèÓïÒ
-	TMXTiledMap* mMap;
-	TMXLayer* mLayer;
+	TMXObject* mTMXObject;
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();

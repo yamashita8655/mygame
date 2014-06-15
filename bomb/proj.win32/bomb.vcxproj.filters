@@ -39,6 +39,9 @@
     <ClCompile Include="..\Classes\Object\DrawObject.cpp">
       <Filter>Classes\Object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Utility\TMXObject.cpp">
+      <Filter>Classes\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Object\DrawObject.h">
       <Filter>Classes\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\TMXObject.h">
+      <Filter>Classes\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

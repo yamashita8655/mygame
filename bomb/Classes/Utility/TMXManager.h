@@ -2,6 +2,8 @@
 #define __TMX_MANAGER_H__
 
 #include "cocos2d.h"
+#include "TMXObject.h"
+#include <map>
 
 USING_NS_CC;
 
@@ -16,18 +18,12 @@ private:
 	TMXManager &operator=(const TMXManager &other){}
 	~TMXManager(){};
 
+	std::map<const char*, TMXObject*> mTMXObjectMap;
+
 public:
-	//uint32_t GetTileId(TMXTiledMap* map, const char* layer_name, Touch* touch);
-	//uint32_t GetTileId(TMXTiledMap* map, TMXLayer* layer, Touch* touch);
-
-	uint32_t GetTileId(TMXTiledMap* map, const char* layer_name, Touch* touch, int* tilex = nullptr, int* tiley = nullptr);
-	uint32_t GetTileId(TMXTiledMap* map, TMXLayer* layer, Touch* touch, int* tilex = nullptr, int* tiley = nullptr);
-	
-	Point GetCenterPoint(TMXTiledMap* map, int tilex, int tiley);
-
+	TMXObject* CreateTMXObject(const char* filename);
 
 private:
-	int calcClickPoint(float touchpos, float tilesize);
 };
 
 #endif // __TMX_MANAGER_H__

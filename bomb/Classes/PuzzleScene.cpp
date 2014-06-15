@@ -75,9 +75,8 @@ bool PuzzleScene::init()
     this->addChild(sprite, 0);
 	
 	// タイルエディターで作った画像の作成
-	mMap = TMXTiledMap::create("mapdata/map1.tmx");
-	this->addChild(mMap, 0);
-	mLayer = mMap->getLayer("layer1");
+	mTMXObject = TMXManager::getInstance()->CreateTMXObject("mapdata/map1.tmx");
+	this->addChild(mTMXObject->GetTMXTiledMap(), 0);
 	
 	this->scheduleUpdate();
 
@@ -128,19 +127,15 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 	//uint32_t gid = mLayer->getTileGIDAt(Point(0,0));
 	int tilex = 0;
 	int tiley = 0;
-	uint32_t gid = TMXManager::getInstance()->GetTileId(mMap, mLayer, touch, &tilex, &tiley);
+	int gid = mTMXObject->GetTileId("layer1", touch);
 
-	Size mapsize = mMap->getMapSize();// 横と縦のタイル数が返る
-	Size tilesize = mMap->getTileSize();// 1マップのタイルサイズ
-
-	//log("%f, %f\n", mouse->getCursorX(), mouse->getCursorY());
-	//log("%d:%d:%d:%d:%d\n", gid,gid2,gid3,gid4,gid5);
 	log("%d\n", gid);
 
 	Sprite* bomb = ObjectManager::getInstance()->CreateSprite("bomb01.png");
-	Point drawpos = TMXManager::getInstance()->GetCenterPoint(mMap, tilex, tiley);
+	Point drawpos = mTMXObject->GetTouchCenterPoint(touch);
     bomb->setPosition(drawpos);
     this->addChild(bomb, 0);
+	
 	return true;
 }
    
