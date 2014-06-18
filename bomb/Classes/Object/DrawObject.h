@@ -10,12 +10,14 @@ class DrawObject
 public:
 	DrawObject();
 	virtual ~DrawObject(){};
-	Sprite* CreateSprite(const char* filename);
 	
 	void SetSprite(Sprite* sprite){ mSprite = sprite; }
 	Sprite* GetSprite(){ return mSprite; }
 
-private:
+	void SetKey(std::string key){ mKey = key; }
+	std::string GetKey(){ return mKey; }
+protected:
+	std::string mKey;
 	Sprite* mSprite;
 };
 

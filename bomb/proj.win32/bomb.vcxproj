@@ -135,10 +135,12 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Object\BombObject.cpp" />
     <ClCompile Include="..\Classes\Object\DrawObject.cpp" />
     <ClCompile Include="..\Classes\Object\ObjectManager.cpp" />
     <ClCompile Include="..\Classes\Object\TileData.cpp" />
     <ClCompile Include="..\Classes\PuzzleScene.cpp" />
+    <ClCompile Include="..\Classes\Utility\SpriteCreator.cpp" />
     <ClCompile Include="..\Classes\Utility\TMXManager.cpp" />
     <ClCompile Include="..\Classes\Utility\TMXObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -146,10 +148,12 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Object\BombObject.h" />
     <ClInclude Include="..\Classes\Object\DrawObject.h" />
     <ClInclude Include="..\Classes\Object\ObjectManager.h" />
     <ClInclude Include="..\Classes\Object\TileData.h" />
     <ClInclude Include="..\Classes\PuzzleScene.h" />
+    <ClInclude Include="..\Classes\Utility\SpriteCreator.h" />
     <ClInclude Include="..\Classes\Utility\TMXManager.h" />
     <ClInclude Include="..\Classes\Utility\TMXObject.h" />
     <ClInclude Include="main.h" />

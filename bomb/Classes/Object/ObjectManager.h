@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "DrawObject.h"
+#include "BombObject.h"
+#include "TileData.h"
 
 USING_NS_CC;
 
@@ -17,10 +19,15 @@ private:
 	ObjectManager &operator=(const ObjectManager &other){}
 	~ObjectManager(){};
 
-	std::map<const char*, DrawObject*> mDrawObjectMap;
+	std::map<std::string, DrawObject*> mDrawObjectMap;
+	std::list<std::string> mDeleteObjectList;
 public:
-	void CreateSpriteFrameCache(const char* filename);
-	DrawObject* CreateDrawObject(const char* filename);
+	BombObject* CreateBombObject(const char* filename, int x, int y);
+	//void DeleteObject(int x, int y);
+	void Update();
+	
+	void DeleteObjectList(std::string key);
+	DrawObject* GetDrawObject(int x, int y);
 
 private:
 };

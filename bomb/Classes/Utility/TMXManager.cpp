@@ -18,3 +18,4 @@ TMXObject* TMXManager::CreateTMXObject(const char* filename)
 
 	return obj;
 }
+

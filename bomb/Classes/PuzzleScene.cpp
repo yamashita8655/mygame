@@ -1,6 +1,8 @@
 #include "PuzzleScene.h"
 #include "Utility/TMXManager.h"
+#include "Utility/SpriteCreator.h"
 #include "Object/ObjectManager.h"
+#include "Object/BombObject.h"
 
 USING_NS_CC;
 
@@ -13,7 +15,7 @@ Scene* PuzzleScene::createScene()
     auto layer = PuzzleScene::create();
 
     // add layer as a child to scene
-    scene->addChild(layer);
+    scene->addChild(layer, 0, 100);
 
     // return the scene
     return scene;
@@ -89,7 +91,6 @@ bool PuzzleScene::init()
 	listener->onTouchCancelled = CC_CALLBACK_2(PuzzleScene::onTouchCancelled, this);
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-
 	// マルチタッチ。忘れないように書いておくだけ
 	//EventDispatcher* dispatcher2 = Director::getInstance()->getEventDispatcher();
     //EventListenerTouchAllAtOnce* listener2 = EventListenerTouchAllAtOnce::create();
@@ -99,13 +100,14 @@ bool PuzzleScene::init()
     //listener2->onTouchesEnded = CC_CALLBACK_2(PuzzleScene::onTouchesEnded, this);
 
     //dispatcher2->addEventListenerWithSceneGraphPriority(listener2, this);
-
-	ObjectManager::getInstance()->CreateSpriteFrameCache("putobject/sample_texturepacker.plist");
+	SpriteCreator::getInstance()->AddSpriteFrameCache("putobject/sample_texturepacker.plist");
+	
 	return true;
 }
 
 void PuzzleScene::update(float delta)
 {
+	ObjectManager::getInstance()->Update();
 }
 
 
@@ -122,7 +124,11 @@ void PuzzleScene::menuCloseCallback(Ref* pSender)
 bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 {
 	Point point = mTMXObject->GetTouchPoint(touch);
-	if(mTMXObject->GetTile(point.x, point.y)->GetPutObject() != nullptr)
+/*	if(mTMXObject->GetTile(point.x, point.y) != nullptr)
+	{
+		return false;
+	}*/
+	if(ObjectManager::getInstance()->GetDrawObject(point.x, point.y) != nullptr)
 	{
 		return false;
 	}
@@ -135,15 +141,19 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 
 	log("%d\n", gid);
 
-	DrawObject* bomb = ObjectManager::getInstance()->CreateDrawObject("bomb01.png");
+	BombObject* bomb = ObjectManager::getInstance()->CreateBombObject("bomb01.png", point.x, point.y);
 	Point drawpos = mTMXObject->GetTouchCenterPoint(touch);
     bomb->GetSprite()->setPosition(drawpos);
     this->addChild(bomb->GetSprite(), 0);
 
-	TileData* tile = new TileData();
-	tile->SetPutObject(bomb);
-	mTMXObject->SetTile(point.x, point.y, tile);
+	cocos2d::EventCustom remove_bomb("removeBomb");
+	//Director::getInstance()->getEventDispatcher()->dispatchEvent(&remove_bomb);
 	
+	mCustomListener = EventListenerCustom::create("removeBomb", &(this->RemoveBomb));
+    EventDispatcher* dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(mCustomListener, this);
+	bomb->SetEventDispatcher(dispatcher);
+
 	return true;
 }
    
@@ -177,4 +187,17 @@ void PuzzleScene::onTouchesCancelled(const std::vector<Touch*>& touches, Event *
 {
 	
 }
+
+void PuzzleScene::RemoveBomb(EventCustom* event)
+{
+	BombObject* bomb = (BombObject*)event->getUserData();
+	bomb->DeleteEventDispatcher();
+	auto director = Director::getInstance();
+	Sprite* delsprite = bomb->GetSprite();
+	Scene* scene = director->getRunningScene();
+	Layer* layer = (Layer*)scene->getChildByTag(100);
+	layer->removeChild(delsprite);
+	ObjectManager::getInstance()->DeleteObjectList(bomb->GetKey());
+}
+
 

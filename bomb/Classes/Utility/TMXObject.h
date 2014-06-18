@@ -20,15 +20,9 @@ public:
 	Point GetTouchPoint(Touch* touch);
 	Point GetTouchCenterPoint(Touch* touch);
 
-	TileData* GetTile(int x, int y);
-	void SetTile(int x, int y, TileData* tile);
-
 private:
 	TMXTiledMap* mTMXTiledMap;
 	int calcClickPoint(float touchpos, float tilesize);
-	void createTileMap();
-
-	std::vector<std::vector<TileData*>> mTileMap;
 };
 
 #endif // __TMX_OBJECT_H__

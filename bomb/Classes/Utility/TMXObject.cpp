@@ -6,8 +6,6 @@ USING_NS_CC;
 TMXTiledMap* TMXObject::Create(const char* filename)
 {
 	mTMXTiledMap = TMXTiledMap::create(filename);
-	
-	createTileMap();
 	return mTMXTiledMap;
 }
 
@@ -75,33 +73,3 @@ int TMXObject::calcClickPoint(float touchpos, float tilesize)
 
 	return pos;
 }
-	
-TileData* TMXObject::GetTile(int x, int y)
-{
-	return mTileMap.at(y).at(x);
-}
-
-void TMXObject::SetTile(int x, int y, TileData* tile)
-{
-	mTileMap.at(y).at(x) = tile;
-}
-
-void TMXObject::createTileMap()
-{
-	Size mapsize = mTMXTiledMap->getMapSize();// 横と縦のタイル数が返る
-
-	for(int i = 0; i < mapsize.height; i++)
-	{
-		std::vector<TileData*> vec;
-		mTileMap.push_back(vec);
-
-		for(int j = 0; j < mapsize.width; j++)
-		{
-			TileData* tile = new TileData();
-			mTileMap.at(i).push_back(tile);
-		}
-	}
-		
-}
-
-

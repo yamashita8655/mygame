@@ -45,6 +45,12 @@
     <ClCompile Include="..\Classes\Object\TileData.cpp">
       <Filter>Classes\Object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Object\BombObject.cpp">
+      <Filter>Classes\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility\SpriteCreator.cpp">
+      <Filter>Classes\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -73,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Object\TileData.h">
       <Filter>Classes\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Object\BombObject.h">
+      <Filter>Classes\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\SpriteCreator.h">
+      <Filter>Classes\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

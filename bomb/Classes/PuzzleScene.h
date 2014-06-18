@@ -12,6 +12,8 @@ public:
 	// É^ÉCÉãèÓïÒ
 	TMXObject* mTMXObject;
 
+	EventListenerCustom* mCustomListener;
+
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
 
@@ -34,6 +36,9 @@ public:
     virtual void onTouchesMoved(const std::vector<Touch*>& touches,Event *pEvent);
     virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *pEvent);
     virtual void onTouchesCancelled(const std::vector<Touch*>& touches, Event *pEvent);
+
+
+	static void RemoveBomb(EventCustom* event);
 	// implement the "static create()" method manually
     CREATE_FUNC(PuzzleScene);
 };

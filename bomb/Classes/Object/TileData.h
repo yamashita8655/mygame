@@ -14,6 +14,9 @@ public:
 	void SetPutObject(DrawObject* object){ mPutObject = object; }
 	DrawObject* GetPutObject(){ return mPutObject; }
 
+	int mPosx;
+	int mPosy;
+
 private:
 	DrawObject* mPutObject;
 };
