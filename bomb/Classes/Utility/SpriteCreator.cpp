@@ -25,3 +25,9 @@ Sprite* SpriteCreator::CreateSprite(const char* filename)
 	return sprite;
 }
 
+SpriteFrame* SpriteCreator::CreateSpriteFrame(const char* filename)
+{
+	SpriteFrame* sprite = SpriteFrameCache::getInstance()->getSpriteFrameByName(filename);
+	return sprite;
+}
+

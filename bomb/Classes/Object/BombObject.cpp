@@ -1,4 +1,5 @@
 #include "BombObject.h"
+#include "ObjectManager.h"
 
 USING_NS_CC;
 
@@ -20,19 +21,10 @@ void BombObject::UpdateTime()
 	mRemainTime -= diff;
 	if(mRemainTime < 0)
 	{
-		mDispatcher->dispatchCustomEvent("removeBomb", (void*)this);
+		//mSprite->getEventDispatcher()->dispatchCustomEvent("delete_sprite", (void*)this);
+		ObjectManager::DeleteSprite(this);
 	}
 	mLastAccessTime = now;
-}
-
-void BombObject::SetEventDispatcher(EventDispatcher* dispatcher)
-{
-     mDispatcher = dispatcher;
-}
-
-void BombObject::DeleteEventDispatcher()
-{
-	//mDispatcher->removeAllEventListeners();
 }
 
 

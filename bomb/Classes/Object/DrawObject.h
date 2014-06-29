@@ -16,9 +16,17 @@ public:
 
 	void SetKey(std::string key){ mKey = key; }
 	std::string GetKey(){ return mKey; }
+
+	void AnimationAddSprite(SpriteFrame* sprite);
+	void SetAnimationFrame(float frame);
+
+	void CreateAnimate();
+	void PlayAnimation();
 protected:
 	std::string mKey;
 	Sprite* mSprite;
+
+	Animation* mSpriteAnimation;
 };
 
 #endif // __DRAWOBJECT_H__

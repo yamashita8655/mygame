@@ -142,21 +142,24 @@ bool PuzzleScene::onTouchBegan(Touch* touch, Event* event)
 	log("%d\n", gid);
 
 	BombObject* bomb = ObjectManager::getInstance()->CreateBombObject("bomb01.png", point.x, point.y);
+
+
+	for(int i = 0; i < 4; i++)
+	{
+		auto str = __String::createWithFormat("bomb0%i.png", i);
+		SpriteFrame* spframe = SpriteCreator::getInstance()->CreateSpriteFrame(str->getCString());
+		bomb->AnimationAddSprite(spframe);
+	}
+	bomb->SetAnimationFrame(1.0f);
+	bomb->PlayAnimation();
+
 	Point drawpos = mTMXObject->GetTouchCenterPoint(touch);
     bomb->GetSprite()->setPosition(drawpos);
     this->addChild(bomb->GetSprite(), 0);
 
-	cocos2d::EventCustom remove_bomb("removeBomb");
-	//Director::getInstance()->getEventDispatcher()->dispatchEvent(&remove_bomb);
-	
-	mCustomListener = EventListenerCustom::create("removeBomb", &(this->RemoveBomb));
-    EventDispatcher* dispatcher = Director::getInstance()->getEventDispatcher();
-	dispatcher->addEventListenerWithSceneGraphPriority(mCustomListener, this);
-	bomb->SetEventDispatcher(dispatcher);
-
 	return true;
 }
-   
+
 void PuzzleScene::onTouchMoved(Touch* touch, Event* event)
 {
 }
@@ -188,7 +191,7 @@ void PuzzleScene::onTouchesCancelled(const std::vector<Touch*>& touches, Event *
 	
 }
 
-void PuzzleScene::RemoveBomb(EventCustom* event)
+/*void PuzzleScene::RemoveBomb(EventCustom* event)
 {
 	BombObject* bomb = (BombObject*)event->getUserData();
 	bomb->DeleteEventDispatcher();
@@ -198,6 +201,6 @@ void PuzzleScene::RemoveBomb(EventCustom* event)
 	Layer* layer = (Layer*)scene->getChildByTag(100);
 	layer->removeChild(delsprite);
 	ObjectManager::getInstance()->DeleteObjectList(bomb->GetKey());
-}
+}*/
 
 

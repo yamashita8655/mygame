@@ -28,6 +28,7 @@ BombObject* ObjectManager::CreateBombObject(const char* filename, int x, int y)
 	Sprite* sprite = Sprite::createWithSpriteFrameName(filename);
 	BombObject* obj = new BombObject();
 	obj->SetSprite(sprite);
+	//sprite->getEventDispatcher()->addCustomEventListener("delete_sprite", &(ObjectManager::DeleteSprite));
 	std::string xstr = std::to_string(x);
 	std::string ystr = std::to_string(y);
 	std::string key = xstr + ystr;
@@ -37,6 +38,18 @@ BombObject* ObjectManager::CreateBombObject(const char* filename, int x, int y)
 	mDrawObjectMap.insert(p);
 	
 	return obj;
+}
+
+void ObjectManager::DeleteSprite(BombObject* bomb)
+{
+	auto director = Director::getInstance();
+	Scene* scene = director->getRunningScene();
+	Layer* layer = (Layer*)scene->getChildByTag(100);
+	Sprite* delsprite = bomb->GetSprite();
+	delsprite->getEventDispatcher()->removeCustomEventListeners("delete_sprite");
+	layer->removeChild(delsprite);
+	ObjectManager::getInstance()->DeleteObjectList(bomb->GetKey());
+	
 }
 
 //void ObjectManager::DeleteObject(int x, int y)
@@ -49,17 +62,15 @@ BombObject* ObjectManager::CreateBombObject(const char* filename, int x, int y)
 
 void ObjectManager::Update()
 {
-	std::map<std::string, DrawObject*>::iterator it;
-	for(it = mDrawObjectMap.begin(); it != mDrawObjectMap.end(); it++)
+	for(auto data : mDrawObjectMap)
 	{
-		BombObject* bomb = (BombObject*)it->second;
+		BombObject* bomb = (BombObject*)data.second;
 		bomb->UpdateTime();
 	}
 	
-	std::list<std::string>::iterator listit;
-	for(listit = mDeleteObjectList.begin(); listit != mDeleteObjectList.end(); listit++)
+	for(auto data : mDeleteObjectList)
 	{
-		std::string key = *listit;
+		std::string key = data;
 		mDrawObjectMap.erase(key);
 	}
 
@@ -68,7 +79,7 @@ void ObjectManager::Update()
 
 void ObjectManager::DeleteObjectList(std::string key)
 {
-	mDeleteObjectList.push_back(key);
+	mDeleteObjectList.emplace_back(key);
 }
 
 DrawObject* ObjectManager::GetDrawObject(int x, int y)
@@ -77,7 +88,7 @@ DrawObject* ObjectManager::GetDrawObject(int x, int y)
 	std::string ystr = std::to_string(y);
 	std::string key = xstr + ystr;
 
-	std::map<std::string, DrawObject*>::iterator it = mDrawObjectMap.find(key);
+	auto it = mDrawObjectMap.find(key);
 
 	// マップが end では無い場合（つまりキーにヒットする値が存在した場合）
 	if (it != mDrawObjectMap.end()) 

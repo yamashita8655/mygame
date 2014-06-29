@@ -11,13 +11,10 @@ class  BombObject : public DrawObject
 public:
 	BombObject();
 	void UpdateTime();
-	void SetEventDispatcher(EventDispatcher* dispatcher);
-	void DeleteEventDispatcher();
 
 private:
 	float mLastAccessTime;
 	float mRemainTime;
-    EventDispatcher* mDispatcher;
 };
 
 #endif // __DRAWOBJECT_H__

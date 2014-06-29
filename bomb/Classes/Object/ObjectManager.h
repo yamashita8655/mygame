@@ -21,6 +21,8 @@ private:
 
 	std::map<std::string, DrawObject*> mDrawObjectMap;
 	std::list<std::string> mDeleteObjectList;
+	
+	
 public:
 	BombObject* CreateBombObject(const char* filename, int x, int y);
 	//void DeleteObject(int x, int y);
@@ -28,6 +30,8 @@ public:
 	
 	void DeleteObjectList(std::string key);
 	DrawObject* GetDrawObject(int x, int y);
+
+	static void DeleteSprite(BombObject* bomb);
 
 private:
 };

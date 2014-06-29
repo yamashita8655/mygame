@@ -21,6 +21,7 @@ public:
 	Sprite* CreateSprite(const char* filename);
 	Sprite* CreateSpriteFromFrameCache(const char* filename);
 	void AddSpriteFrameCache(const char* filename);
+	SpriteFrame* CreateSpriteFrame(const char* filename);
 
 private:
 };
