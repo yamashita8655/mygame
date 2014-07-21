@@ -10,11 +10,11 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Utility">
-      <UniqueIdentifier>{14c6f4cb-6f2e-42d6-b46a-46fb5a445cd4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Object">
-      <UniqueIdentifier>{7cde9814-872b-4c55-b9a8-f74d79a3e878}</UniqueIdentifier>
+      <UniqueIdentifier>{ebead13b-9a74-4fe9-a3d8-b30f1f33157b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Utility">
+      <UniqueIdentifier>{23c19c32-340b-46da-ae83-1b260a2c2c07}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,25 +30,25 @@
     <ClCompile Include="..\Classes\PuzzleScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Utility\TMXManager.cpp">
-      <Filter>Classes\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Object\ObjectManager.cpp">
+    <ClCompile Include="..\Classes\Object\BombObject.cpp">
       <Filter>Classes\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Object\DrawObject.cpp">
       <Filter>Classes\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Utility\TMXObject.cpp">
-      <Filter>Classes\Utility</Filter>
+    <ClCompile Include="..\Classes\Object\ObjectManager.cpp">
+      <Filter>Classes\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Object\TileData.cpp">
       <Filter>Classes\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Object\BombObject.cpp">
-      <Filter>Classes\Object</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Utility\SpriteCreator.cpp">
+      <Filter>Classes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility\TMXManager.cpp">
+      <Filter>Classes\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility\TMXObject.cpp">
       <Filter>Classes\Utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,25 +65,25 @@
     <ClInclude Include="..\Classes\PuzzleScene.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utility\TMXManager.h">
-      <Filter>Classes\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Object\ObjectManager.h">
+    <ClInclude Include="..\Classes\Object\BombObject.h">
       <Filter>Classes\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Object\DrawObject.h">
       <Filter>Classes\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utility\TMXObject.h">
-      <Filter>Classes\Utility</Filter>
+    <ClInclude Include="..\Classes\Object\ObjectManager.h">
+      <Filter>Classes\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Object\TileData.h">
       <Filter>Classes\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Object\BombObject.h">
-      <Filter>Classes\Object</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Utility\SpriteCreator.h">
+      <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\TMXManager.h">
+      <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\TMXObject.h">
       <Filter>Classes\Utility</Filter>
     </ClInclude>
   </ItemGroup>
